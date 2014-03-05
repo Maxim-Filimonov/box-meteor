@@ -1,5 +1,5 @@
 name: meteor
-version: 0.7.1.2
+version: 0.7.1_2
 type: main
 platform: ubuntu@12.04
 description: box for building testing and deploying meteor apps
@@ -10,7 +10,7 @@ keywords:
   - phantomjs
   - mongodb
 packages:
-  - meteor@0.7.1.2
+  - meteor@0.7.1_2
 script: |
 script: |-
   echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/10gen.list
@@ -54,4 +54,4 @@ script: |-
   type laika || { echo "Laika not found after installation! Terminating..."; exit 1; }
 env:
   NODE_VERSION: "0.10.26"
-  METEOR_VERSION: "0.7.1.2"
+  METEOR_VERSION: "0.7.1_2"
