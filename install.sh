@@ -73,7 +73,7 @@ trap "echo Installation failed." EXIT
 # install here:
 [ -e "$HOME/.meteor" ] && rm -rf "$HOME/.meteor"
 
-TARBALL_URL="https://warehouse.meteor.com/bootstrap/0.7.1.2/meteor-bootstrap-${PLATFORM}.tar.gz"
+TARBALL_URL="https://warehouse.meteor.com/bootstrap/0.8.0/meteor-bootstrap-${PLATFORM}.tar.gz"
 
 INSTALL_TMPDIR="$HOME/.meteor-install-tmp"
 rm -rf "$INSTALL_TMPDIR"
@@ -88,7 +88,7 @@ rmdir "${INSTALL_TMPDIR}"
 test -x "$HOME/.meteor/meteor"
 
 echo
-echo "Meteor 0.7.1.2 has been installed in your home directory (~/.meteor)."
+echo "Meteor 0.8.0 has been installed in your home directory (~/.meteor)."
 
 LAUNCHER="$HOME/.meteor/tools/latest/launch-meteor"
 

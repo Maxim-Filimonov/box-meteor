@@ -1,5 +1,5 @@
 name: meteor
-version: 7.1.2
+version: 8.0.0
 type: main
 platform: ubuntu@12.04
 description: box for building testing and deploying meteor apps
@@ -10,7 +10,7 @@ keywords:
   - phantomjs
   - mongodb
 packages:
-  - meteor@7.1.2
+  - meteor@8.0.0
 script: |
 script: |-
   echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/10gen.list
@@ -42,16 +42,20 @@ script: |-
   type phantomjs || { echo "Phantomjs not found after installation! Terminating..."; exit 1; }
 
   # Install meteorite
-  sudo npm install -g meteorite
+  sudo -H npm install -g meteorite
   type mrt || { echo "Meteorite not found after installation! Terminating..."; exit 1; }
 
   # Install git
   sudo apt-get install git
   type git || { echo "Git not found after installation! Terminating..."; exit 1; }
 
-    # Install laika
-  sudo npm install -g laika
+  # Install laika
+  sudo -H npm install -g laika
   type laika || { echo "Laika not found after installation! Terminating..."; exit 1; }
+
+  # Install mup (Meteor-up)
+  sudo -H npm install -g mup
+  type mup || { echo "Mup not found after installation! Terminating..."; exit 1; }
 env:
   NODE_VERSION: "0.10.26"
-  METEOR_VERSION: "0.7.1_2"
+  METEOR_VERSION: "0.8.0"
