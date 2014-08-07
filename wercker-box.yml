@@ -21,6 +21,13 @@ script: |-
   sudo apt-get install build-essential nodejs mongodb-10gen curl wget libfreetype6-dev libfontconfig1-dev 
   # firefox and xfvb
   sudo apt-get install firefox libfontconfig1-dev xvfb x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps git libqt4-dev
+  
+  # Java installation
+  # Accept Java licenses automatically
+  echo sun-java6-jdk shared/accepted-sun-dlj-v1-1 select true | sudo /usr/bin/debconf-set-selections
+  echo sun-java6-jre shared/accepted-sun-dlj-v1-1 select true | sudo /usr/bin/debconf-set-selections
+  sudo apt-get -y install sun-java6-jdk
+  
   sudo stop mongodb
   sleep 5
 
