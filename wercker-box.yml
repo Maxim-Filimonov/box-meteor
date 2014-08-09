@@ -19,8 +19,6 @@ script: |-
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv C7917B12
   sudo apt-get update
   sudo apt-get install build-essential nodejs mongodb-10gen curl wget libfreetype6-dev libfontconfig1-dev 
-  # firefox and xfvb
-  sudo apt-get install firefox libfontconfig1-dev xvfb x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps git libqt4-dev
   
   # Install Java
   sudo apt-get install python-software-properties curl wget -y
@@ -33,16 +31,12 @@ script: |-
   # Set java environment variables
   sudo apt-get install oracle-java7-set-default 
   
-  # Install and setup Xvfb
+  # Install and setup Xvfb + Firefox
+  sudo apt-get install firefox libfontconfig1-dev xvfb x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps git libqt4-dev -y
   sudo apt-get install xvfb -y
   export DISPLAY=:99.0
   sudo start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
   sleep 5
-  
-  # phantomjs
-  wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
-  tar xfj phantomjs-1.9.2-linux-x86_64.tar.bz2
-  sudo cp phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/bin
   
   sudo stop mongodb
   sleep 5
