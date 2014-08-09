@@ -22,11 +22,27 @@ script: |-
   # firefox and xfvb
   sudo apt-get install firefox libfontconfig1-dev xvfb x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic x11-apps git libqt4-dev
   
-  # Java installation
-  # Accept Java licenses automatically
-  echo sun-java6-jdk shared/accepted-sun-dlj-v1-1 select true | sudo /usr/bin/debconf-set-selections
-  echo sun-java6-jre shared/accepted-sun-dlj-v1-1 select true | sudo /usr/bin/debconf-set-selections
-  sudo apt-get -y install sun-java6-jdk
+  # Install Java
+  sudo apt-get install python-software-properties curl wget -y
+  sudo add-apt-repository ppa:webupd8team/java -y
+  sudo apt-get update
+  echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+  echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+  sudo apt-get install oracle-java7-installer -y
+  
+  # Set java environment variables
+  sudo apt-get install oracle-java7-set-default 
+  
+  # Install and setup Xvfb
+  sudo apt-get install xvfb -y
+  export DISPLAY=:99.0
+  sudo start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+  sleep 5
+  
+  # phantomjs
+  wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
+  tar xfj phantomjs-1.9.2-linux-x86_64.tar.bz2
+  sudo cp phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/bin
   
   sudo stop mongodb
   sleep 5
@@ -68,3 +84,4 @@ script: |-
 env:
   NODE_VERSION: "0.10.26"
   METEOR_VERSION: "0.8.0"
+  DISPLAY: ":99.0"
